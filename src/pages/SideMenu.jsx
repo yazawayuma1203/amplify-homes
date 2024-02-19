@@ -14,7 +14,18 @@ Amplify.configure({
 export default function SideMenuComponent() {
   
   const SideMenuOverrides = {
-    "SideMenu.width" : "200px",
+    "SideMenu" : {
+      height : "100%"
+    },
+    "SideMenu1" : {
+      height : "30%"
+    },
+    "SideMenu2" : {
+      height : "40%"
+    },
+    "SideMenu3" : {
+      height : "30%"
+    },
   }
 
   return (

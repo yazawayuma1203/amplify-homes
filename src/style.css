@@ -1,4 +1,4 @@
-/* Position and sizing of burger button */
+/* ハンバーガーボタンのサイズ */
 .bm-burger-button {
     position: fixed;
     width: 36px;
@@ -7,30 +7,31 @@
     top: 36px;
 }
 
-/* Color/shape of burger icon bars */
+/*サイドバーのスクロールバー */
 .bm-burger-bars {
     background: #373a47;
 }
 
-/* Color/shape of burger icon bars on hover*/
+/* ハンバーガーボタンをホバー時の色*/
 .bm-burger-bars-hover {
     background: #005b99;
 }
 
-/* Position and sizing of clickable cross button */
+/* サイドバー×ボタンのサイズ */
 .bm-cross-button {
     height: 30px;
     width: 30px;
     margin-right: 10px;
 }
 
-/* Color/shape of close button cross */
+/* ×ボタンの色 */
 .bm-cross {
-    background: #bdc3c7;
+    background: #373a47;
 }
 
+/* サイドバー全体のサイズ */
 .bm-menu-wrap {
     position: fixed;
     height: 100%;
-    max-width: 216px;
+    max-width: 201px;
 }
