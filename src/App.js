@@ -1,13 +1,17 @@
 import './App.css';
-import { HomeCreateForm } from './ui-components';
-import { ActionCard } from './ui-components';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import SideMenuComponent from './pages/SideMenu';
+import './style.css';
 
 function App() {
   return (
-    <div className="App">
-    <HomeCreateForm />
-    <ActionCard />
-    </div>
+    <BrowserRouter>
+      <SideMenuComponent />
+      <Routes>
+        <Route path="/"/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -1,0 +1,316 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Home @aws_api_key @aws_iam {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  address: String
+  createdAt: AWSDateTime!
+  id: ID!
+  image_url: String
+  price: Float
+  updatedAt: AWSDateTime!
+}
+
+type ModelHomeConnection @aws_api_key @aws_iam {
+  items: [Home]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelTestModel01Connection @aws_api_key @aws_iam {
+  items: [TestModel01]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type Mutation {
+  createHome(condition: ModelHomeConditionInput, input: CreateHomeInput!): Home @aws_api_key @aws_iam
+  createTestModel01(condition: ModelTestModel01ConditionInput, input: CreateTestModel01Input!): TestModel01 @aws_api_key @aws_iam
+  deleteHome(condition: ModelHomeConditionInput, input: DeleteHomeInput!): Home @aws_api_key @aws_iam
+  deleteTestModel01(condition: ModelTestModel01ConditionInput, input: DeleteTestModel01Input!): TestModel01 @aws_api_key @aws_iam
+  updateHome(condition: ModelHomeConditionInput, input: UpdateHomeInput!): Home @aws_api_key @aws_iam
+  updateTestModel01(condition: ModelTestModel01ConditionInput, input: UpdateTestModel01Input!): TestModel01 @aws_api_key @aws_iam
+}
+
+type Query {
+  getHome(id: ID!): Home @aws_api_key @aws_iam
+  getTestModel01(id: ID!): TestModel01 @aws_api_key @aws_iam
+  listHomes(filter: ModelHomeFilterInput, limit: Int, nextToken: String): ModelHomeConnection @aws_api_key @aws_iam
+  listTestModel01s(filter: ModelTestModel01FilterInput, limit: Int, nextToken: String): ModelTestModel01Connection @aws_api_key @aws_iam
+  syncHomes(filter: ModelHomeFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelHomeConnection @aws_api_key @aws_iam
+  syncTestModel01s(filter: ModelTestModel01FilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelTestModel01Connection @aws_api_key @aws_iam
+}
+
+type Subscription {
+  onCreateHome(filter: ModelSubscriptionHomeFilterInput): Home @aws_api_key @aws_iam @aws_subscribe(mutations : ["createHome"])
+  onCreateTestModel01(filter: ModelSubscriptionTestModel01FilterInput): TestModel01 @aws_api_key @aws_iam @aws_subscribe(mutations : ["createTestModel01"])
+  onDeleteHome(filter: ModelSubscriptionHomeFilterInput): Home @aws_api_key @aws_iam @aws_subscribe(mutations : ["deleteHome"])
+  onDeleteTestModel01(filter: ModelSubscriptionTestModel01FilterInput): TestModel01 @aws_api_key @aws_iam @aws_subscribe(mutations : ["deleteTestModel01"])
+  onUpdateHome(filter: ModelSubscriptionHomeFilterInput): Home @aws_api_key @aws_iam @aws_subscribe(mutations : ["updateHome"])
+  onUpdateTestModel01(filter: ModelSubscriptionTestModel01FilterInput): TestModel01 @aws_api_key @aws_iam @aws_subscribe(mutations : ["updateTestModel01"])
+}
+
+type TestModel01 @aws_api_key @aws_iam {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  age: Int
+  createdAt: AWSDateTime!
+  id: ID!
+  updatedAt: AWSDateTime!
+  userName: String
+}
+
+enum ModelAttributeTypes {
+  _null
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+input CreateHomeInput {
+  _version: Int
+  address: String
+  id: ID
+  image_url: String
+  price: Float
+}
+
+input CreateTestModel01Input {
+  _version: Int
+  age: Int
+  id: ID
+  userName: String
+}
+
+input DeleteHomeInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteTestModel01Input {
+  _version: Int
+  id: ID!
+}
+
+input ModelBooleanInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelFloatInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+}
+
+input ModelHomeConditionInput {
+  _deleted: ModelBooleanInput
+  address: ModelStringInput
+  and: [ModelHomeConditionInput]
+  image_url: ModelStringInput
+  not: ModelHomeConditionInput
+  or: [ModelHomeConditionInput]
+  price: ModelFloatInput
+}
+
+input ModelHomeFilterInput {
+  _deleted: ModelBooleanInput
+  address: ModelStringInput
+  and: [ModelHomeFilterInput]
+  id: ModelIDInput
+  image_url: ModelStringInput
+  not: ModelHomeFilterInput
+  or: [ModelHomeFilterInput]
+  price: ModelFloatInput
+}
+
+input ModelIDInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelSizeInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelStringInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionBooleanInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelSubscriptionFloatInput {
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  in: [Float]
+  le: Float
+  lt: Float
+  ne: Float
+  notIn: [Float]
+}
+
+input ModelSubscriptionHomeFilterInput {
+  _deleted: ModelBooleanInput
+  address: ModelSubscriptionStringInput
+  and: [ModelSubscriptionHomeFilterInput]
+  id: ModelSubscriptionIDInput
+  image_url: ModelSubscriptionStringInput
+  or: [ModelSubscriptionHomeFilterInput]
+  price: ModelSubscriptionFloatInput
+}
+
+input ModelSubscriptionIDInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  in: [ID]
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  notIn: [ID]
+}
+
+input ModelSubscriptionIntInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  in: [Int]
+  le: Int
+  lt: Int
+  ne: Int
+  notIn: [Int]
+}
+
+input ModelSubscriptionStringInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  in: [String]
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  notIn: [String]
+}
+
+input ModelSubscriptionTestModel01FilterInput {
+  _deleted: ModelBooleanInput
+  age: ModelSubscriptionIntInput
+  and: [ModelSubscriptionTestModel01FilterInput]
+  id: ModelSubscriptionIDInput
+  or: [ModelSubscriptionTestModel01FilterInput]
+  userName: ModelSubscriptionStringInput
+}
+
+input ModelTestModel01ConditionInput {
+  _deleted: ModelBooleanInput
+  age: ModelIntInput
+  and: [ModelTestModel01ConditionInput]
+  not: ModelTestModel01ConditionInput
+  or: [ModelTestModel01ConditionInput]
+  userName: ModelStringInput
+}
+
+input ModelTestModel01FilterInput {
+  _deleted: ModelBooleanInput
+  age: ModelIntInput
+  and: [ModelTestModel01FilterInput]
+  id: ModelIDInput
+  not: ModelTestModel01FilterInput
+  or: [ModelTestModel01FilterInput]
+  userName: ModelStringInput
+}
+
+input UpdateHomeInput {
+  _version: Int
+  address: String
+  id: ID!
+  image_url: String
+  price: Float
+}
+
+input UpdateTestModel01Input {
+  _version: Int
+  age: Int
+  id: ID!
+  userName: String
+}
