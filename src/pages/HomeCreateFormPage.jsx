@@ -34,20 +34,23 @@ export default function HomeCreateFormPage() {
   };
 
   const registerHome = () => {
+
     const home = {
       address: address,
       image_url: imageUrl,
       price:price,
     }
+
     const f = async () => {
+      const newData = 
       await API.graphql ( 
         {
           query : mutation.createHome,
-          variables : {input: home,},
+          variables : {input: home},
           authMode: "API_KEY",
         }
       )
-      navigate("/home")
+      navigate("/data?id=" + newData.data.createHome.id)
     };
     f();
   };
