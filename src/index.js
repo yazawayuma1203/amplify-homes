@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Amplify } from 'aws-amplify';
 import "@aws-amplify/ui-react/styles.css";
-import {AmplifyProvider} from "@aws-amplify/ui-react";
+import {ThemeProvider} from "@aws-amplify/ui-react";
 
 import awsmobile from './aws-exports';
 
@@ -16,9 +16,9 @@ Amplify.configure({
 
 ReactDOM.render(
   <React.StrictMode>
-    <AmplifyProvider>
+    <ThemeProvider>
       <App />
-    </AmplifyProvider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
