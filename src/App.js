@@ -4,6 +4,7 @@ import { Amplify } from "aws-amplify";
 
 import SideMenuComponent from './pages/SideMenu';
 import HomeCreateFormPage from './pages/HomeCreateFormPage';
+import  UpperMenuComponent  from './pages/UpperMenu';
 import './style.css';
 import awsmobile from './aws-exports';
 
@@ -17,6 +18,7 @@ function App() {
   return (
     <BrowserRouter>
       <SideMenuComponent />
+      <UpperMenuComponent />
       <Routes>
         <Route path="/" element={<HomeCreateFormPage />} />
       </Routes>

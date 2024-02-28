@@ -7,6 +7,10 @@
 export { default as Desktop1 } from "./Desktop1";
 export { default as HomeCreateForm } from "./HomeCreateForm";
 export { default as HomeUpdateForm } from "./HomeUpdateForm";
+export { default as MenuMethod } from "./MenuMethod";
+export { default as MenuProject } from "./MenuProject";
+export { default as MenuRelatedInfo } from "./MenuRelatedInfo";
+export { default as MenuTrial } from "./MenuTrial";
 export { default as SideMenu } from "./SideMenu";
 export { default as SideMenu1 } from "./SideMenu1";
 export { default as SideMenu2 } from "./SideMenu2";
@@ -22,4 +26,5 @@ export { default as SideMenuReport } from "./SideMenuReport";
 export { default as SideMenuShinsei } from "./SideMenuShinsei";
 export { default as TestModel01CreateForm } from "./TestModel01CreateForm";
 export { default as TestModel01UpdateForm } from "./TestModel01UpdateForm";
+export { default as UpperMenu } from "./UpperMenu";
 export { default as studioTheme } from "./studioTheme";
